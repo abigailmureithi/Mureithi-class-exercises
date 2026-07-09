@@ -6,16 +6,19 @@ import (
 )
 
 type KVPair struct {
-	key string
+	key   string
 	value string
 }
 
 func main() {
 	path := "data/Moscow.txt"
-    input, err := os.ReadFile(path)
-    if err != nil {
-        panic(err)
-    }
-    map_out := Map(path, string(input))
-    fmt.Println(map_out)
+	input, err := os.ReadFile(path)
+	if err != nil {
+		panic(err)
+	}
+	map_out := Map(path, string(input))
+	fmt.Println(map_out)
+
+	res := Reduce("2024", []string{"12.1", "-10.5", "32.1", "30.6"})
+	fmt.Println(res)
 }
