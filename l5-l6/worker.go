@@ -8,7 +8,7 @@ import (
 func Map(key string, value string) []KVPair {
 
 	output := make([]KVPair, 0)
-
+	
 	// TODO: This loop iterates over each line of the "value" string
 	// You will want to parse out the date and temperature from each line and add it to the "output" slice
 	for _, line := range strings.Split(strings.TrimSuffix(value, "\n"), "\n") {
