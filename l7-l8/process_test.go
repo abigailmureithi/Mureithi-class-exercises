@@ -27,7 +27,25 @@ func TestProcesses(t *testing.T) {
 
 	// TODO: fill in calls to p.Internal, p.Send(), p.Receive() correctly
     // The execution should match the comment above.
+	p3.Internal() // send[0, 0, 1] p3 clock
+	p3.Internal() // send[0, 0, 2] p3 clock
 
+	p1.Internal()
+	msgFromP1 := p1.Send()
+
+	p2.Receive(msgFromP1)
+	msgFromP2 := p2.Send()
+
+	p3.Receive(msgFromP2)
+	p3.Internal()
+
+	p1.Internal()
+
+	msgFromP3 := make([]int, p3.N)
+	copy(msgFromP3, p3.clock)
+
+	p1.Receive(msgFromP3) 
+	
 	expected_p1 := []int{4,2,4}
 	expected_p2 := []int{2,2,0}
 	expected_p3 := []int{2,2,4} 
